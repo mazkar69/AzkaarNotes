@@ -3,7 +3,6 @@
 This guide will walk you through the steps to set up multiple GitHub accounts on a single system using SSH keys.
 
 ## Step 1: Generate a New SSH Key for Your Second GitHub Account
-Same ssh key can't be use in two github account, we need to generate the secound ssh key.
 
 Open a terminal and run the following command. Replace `your_email@example.com` with your email address:
 
@@ -15,7 +14,7 @@ When prompted to "Enter a file in which to save the key," specify a different na
 
 ## Step 2: Add the New SSH Key to Your SSH Agent
 
-Start the SSH agent (use git bash if not work on cmd):
+Start the SSH agent:
 
 ```sh
 eval "$(ssh-agent -s)"
@@ -41,7 +40,7 @@ Then, add this key to your GitHub account by going to **Settings** > **SSH and G
 
 Edit the `~/.ssh/config` file to differentiate between your GitHub accounts:
 
-```sh name=~/.ssh/config
+```sh
 # GitHub personal account
 Host github.com-personal
     HostName github.com
@@ -54,13 +53,96 @@ Host github.com-company
     User git
     IdentityFile ~/.ssh/id_ed25519_company
 ```
-Adding host in config is important.
 
-## Step 5: Push the Repository Using the Correct SSH Host
-Change the repo name accordingly.
+## Step 5: Cloning and Pushing Repositories Using Different Accounts
+
+When cloning repositories, use the correct host alias:
+
+For the personal account:
 ```sh
-git push git@github.com-company:mazkar69/AzKaaRNotes.git
+git clone git@github.com-personal:username/repository.git
 ```
 
+For the company account:
+```sh
+git clone git@github.com-company:company_username/repository.git
+```
 
-That's it, We had successfully added the ssh for secound github account.
+If you have an existing repository, update the remote URL:
+
+```sh
+git remote set-url origin git@github.com-company:company_username/repository.git
+```
+
+## Fix: Permission Denied Issue When Pushing to GitHub
+
+If you encounter an error like:
+
+```
+ERROR: Permission to mazkar69/AzkaarNotes.git denied to mdazkaar.
+fatal: Could not read from remote repository.
+```
+
+### Step 1: Check Which SSH Key Git is Using
+
+Run:
+```sh
+ssh -T git@github.com
+```
+
+If it returns:
+```sh
+Hi mdazkaar! You've successfully authenticated...
+```
+But you are trying to push to `mazkar69/AzkaarNotes.git`, then Git is using the wrong account.
+
+### Step 2: Verify Your Remote URL
+
+Run:
+```sh
+git remote -v
+```
+
+If you see:
+```
+origin  git@github.com:mazkar69/AzkaarNotes.git (fetch)
+origin  git@github.com:mazkar69/AzkaarNotes.git (push)
+```
+Git is using the default `github.com`, which does not respect your SSH configuration.
+
+### Step 3: Update Remote URL with Correct SSH Host
+
+If pushing from Account 1 (`mazkar69`):
+```sh
+git remote set-url origin git@github.com-personal:mazkar69/AzkaarNotes.git
+```
+
+If pushing from Account 2 (`mdazkaar`):
+```sh
+git remote set-url origin git@github.com-company:mdazkaar/AzkaarNotes.git
+```
+
+### Step 4: Push Again
+
+Try:
+```sh
+git push origin main
+```
+
+If the issue persists, force Git to use the correct SSH key:
+```sh
+GIT_SSH_COMMAND="ssh -i ~/.ssh/id_ed25519_company" git push origin main
+```
+
+### Step 5: Verify SSH Authentication
+
+Run:
+```sh
+ssh -i ~/.ssh/id_ed25519_company -T git@github.com
+```
+
+If one fails, you might need to **re-add your SSH key to GitHub**.
+
+## Conclusion
+By following these steps, you can seamlessly switch between multiple GitHub accounts on the same system without running into authentication errors.
+
