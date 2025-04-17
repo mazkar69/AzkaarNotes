@@ -25,7 +25,14 @@ mongodump --host localhost --port 27017 --username admin --password admin --auth
 
 ## 2:  Import the Database (For Restore)
 
-### Import the Database in MongoDB
+### Import the Database from Local Machine to Atlas
+  
+  ```sh
+mongorestore --uri="mongodb+srv://<username>:<password>@<cluster-url>/chaardham" --drop /path/to/backup
+```
+
+
+### Import the Database from Local Machine to Local Server
 
 ```sh
 mongorestore --db=chaardham /path/on/server/chaardham
