@@ -10,7 +10,18 @@ Open a terminal and run the following command. Replace `your_email@example.com` 
 ssh-keygen -t ed25519 -C "your_email@example.com"
 ```
 
-When prompted to "Enter a file in which to save the key," specify a different name for the key file (e.g., `id_ed25519_company`).
+When prompted to "Enter a file in which to save the key," specify a different name for the key file (e.g., `id_ed25519_personal`).
+
+
+### 1.1 Generate SSH Keys for Personal and Company Accounts 
+Note: One SSH key is for your personal GitHub account and the other is for your company GitHub account.
+
+Generate SSH keys for your personal and company accounts:
+```bash
+ssh-keygen -t ed25519 -C "your_personal_email@example.com" -f ~/.ssh/id_ed25519_personal
+ssh-keygen -t ed25519 -C "your_company_email@example.com" -f ~/.ssh/id_ed25519_company
+```
+Replace the email addresses with your personal and company GitHub email addresses.
 
 ## Step 2: Add the New SSH Key to Your SSH Agent
 
@@ -45,13 +56,13 @@ Edit the `~/.ssh/config` file to differentiate between your GitHub accounts:
 Host github.com-personal
     HostName github.com
     User git
-    IdentityFile ~/.ssh/id_ed25519
+    IdentityFile ~/.ssh/id_ed25519_personal 
 
 # GitHub company account
 Host github.com-company
     HostName github.com
     User git
-    IdentityFile ~/.ssh/id_ed25519_company
+    IdentityFile ~/.ssh/id_ed25519_company   
 ```
 
 ## Step 5: Cloning and Pushing Repositories Using Different Accounts
