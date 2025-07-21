@@ -1,1 +1,0 @@
-# Usefull NPM Package.
