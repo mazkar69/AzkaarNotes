@@ -16,3 +16,10 @@
   - [https://api.ipify.org/?format=json](https://api.ipify.org/?format=json)
   - [https://www.ipify.org/](https://www.ipify.org/)
 - **Usage**: These APIs are useful for determining the user's IP address, which can be used for location tracking, analytics, security purposes, etc.
+
+## 4. Get Details from IP Address
+- **Description**: API to get details about a specific IP address.
+- **Endpoints**: 
+  - [https://ipapi.co/{ip}/json/](https://ipapi.co/{ip}/json/)
+  - [https://ipinfo.io/{ip}/json](https://ipinfo.io/{ip}/json)
+- **Usage**: These APIs are useful for retrieving information about a specific IP address, such as location, ISP, and more.
