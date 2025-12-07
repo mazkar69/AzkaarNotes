@@ -151,6 +151,7 @@ If the file still exists →
 | Purpose | Command |
 |--------|---------|
 | List block devices | `lsblk` |
+| List disk usage | `df -h` |
 | Format new volume | `sudo mkfs -t ext4 /dev/xvdf` |
 | Create mount directory | `sudo mkdir -p /data` |
 | Mount volume | `sudo mount /dev/xvdf /data` |
@@ -170,4 +171,4 @@ If the file still exists →
 ---
 
 ## ⭐ Author  
-Auto-generated guide for developers needing reliable EC2 EBS operations.
+[me] - DevOps Engineer | Cloud Enthusiast
