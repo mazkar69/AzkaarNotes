@@ -1,5 +1,5 @@
         
-## Installing phpMyAdmin on Ubuntu Server
+## Installing phpMyAdmin on Ubuntu Server [Using this method in wedding banquets]
 
 To install phpMyAdmin on an Ubuntu server, ensure you have the **LEMP** stack (Linux, Nginx, MySQL, and PHP) installed.
 
