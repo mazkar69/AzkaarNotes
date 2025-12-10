@@ -115,7 +115,7 @@ server{
     root /var/www/project_folder_name/production_build_folder_name;
     index index.html;
     location / {
-        try_files $uri $uri/ =404;
+        try_files $uri $uri/ /index.html;
     }
 }
 ```
