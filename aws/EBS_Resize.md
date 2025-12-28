@@ -452,9 +452,5 @@ Filesystem      Size  Used Avail Use% Mounted on
 
 ---
 
-## Additional Resources
-
-- [AWS EBS Documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-modify-volume.html)
-- [Linux Filesystem Resize Guide](https://wiki.archlinux.org/title/Resizing_LVM_partition)
 
 **Remember**: Always backup before resizing! 💾
