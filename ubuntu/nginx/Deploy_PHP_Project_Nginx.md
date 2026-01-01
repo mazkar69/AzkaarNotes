@@ -96,7 +96,7 @@ Example:- sudo mv miniblog /var/www
 - Create Virtual Host File
 ```sh
 Syntax:- sudo nano /etc/nginx/sites-available/your_domain
-Example:- sudo nano /etc/nginx/sites-available/sonamkumari.com
+Example:- sudo nano /etc/nginx/sites-available/mohdazkaar.com
 ```
 - Write following Code in Virtual Host File
 ```sh
@@ -120,7 +120,7 @@ server{
 ```sh
 cd /etc/nginx/sites-available/
 Syntax:- sudo ln -s /etc/nginx/sites-available/virtual_host_file /etc/nginx/sites-enabled/virtual_host_file
-Example:- sudo ln -s /etc/nginx/sites-available/sonamkumari.com /etc/nginx/sites-enabled/sonamkumari.com
+Example:- sudo ln -s /etc/nginx/sites-available/mohdazkaar.com /etc/nginx/sites-enabled/mohdazkaar.com
 ```
 - Check Configuration is Correct or Not
 ```sh
