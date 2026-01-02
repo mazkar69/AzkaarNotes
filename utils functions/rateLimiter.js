@@ -10,7 +10,7 @@ import rateLimit from "express-rate-limit";
  */
 export const apiLimiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 100, // Limit each IP to 100 requests per windowMs
+    limit: 100, // Limit each IP to 100 requests per windowMs
     message: {
         success: false,
         message: "Too many requests, please try again after 15 minutes",
@@ -29,7 +29,7 @@ export const apiLimiter = rateLimit({
  */
 export const authLimiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 5, // 5 attempts per window
+    limit: 5, // 5 attempts per window
     message: {
         success: false,
         message: "Too many login attempts, please try again after 15 minutes",
@@ -49,7 +49,7 @@ export const authLimiter = rateLimit({
  */
 export const otpLimiter = rateLimit({
     windowMs: 10 * 60 * 1000, // 10 minutes
-    max: 3,
+    limit: 3,
     message: {
         success: false,
         message: "Too many OTP requests, please try again after 10 minutes",
@@ -68,7 +68,7 @@ export const otpLimiter = rateLimit({
  */
 export const uploadLimiter = rateLimit({
     windowMs: 60 * 60 * 1000, // 1 hour
-    max: 10,
+    limit: 10,
     message: {
         success: false,
         message: "Upload limit reached, please try again after an hour",
@@ -89,7 +89,7 @@ export const uploadLimiter = rateLimit({
 export const createRateLimiter = (options = {}) => {
     const {
         windowMs = 15 * 60 * 1000,
-        max = 100,
+        limit = 100,
         message = "Too many requests, please try again later",
         skipSuccessfulRequests = false,
         skipFailedRequests = false,
@@ -98,7 +98,7 @@ export const createRateLimiter = (options = {}) => {
 
     return rateLimit({
         windowMs,
-        max,
+        limit,
         message: {
             success: false,
             message,
@@ -120,7 +120,7 @@ export const createRateLimiter = (options = {}) => {
  */
 export const userBasedLimiter = rateLimit({
     windowMs: 15 * 60 * 1000,
-    max: 100,
+    limit: 100,
     message: {
         success: false,
         message: "Rate limit exceeded",
