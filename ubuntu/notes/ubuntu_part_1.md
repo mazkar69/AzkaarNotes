@@ -1228,4 +1228,3 @@ This guide covered the fundamental concepts of Ubuntu server administration:
 
 ---
 
-*Part 2 will cover advanced topics like SSH configuration, web server deployment, and more.*
