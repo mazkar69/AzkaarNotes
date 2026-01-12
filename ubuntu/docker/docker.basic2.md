@@ -900,7 +900,7 @@ volumes:
 
 ```bash
 # Start everything
-docker-compose up -d
+docker compose up -d
 
 # Much simpler!
 ```
@@ -909,27 +909,26 @@ docker-compose up -d
 
 ```bash
 # Start services
-docker-compose up
-docker-compose up -d
+docker compose up
+docker compose up -d
 
 # Stop services
-docker-compose down
-
+docker compose down
 # View logs
-docker-compose logs
-docker-compose logs -f api
+docker compose logs
+docker compose logs -f api
 
 # List services
-docker-compose ps
+docker compose ps
 
 # Execute command
-docker-compose exec api bash
+docker compose exec api bash
 
 # Rebuild images
-docker-compose build
+docker compose build
 
 # Scale services
-docker-compose up -d --scale api=3
+docker compose up -d --scale api=3
 ```
 
 ---
@@ -1043,16 +1042,16 @@ NODE_ENV=production
 
 ```bash
 # Start all services
-docker-compose up -d
+docker compose up -d
 
 # View logs
-docker-compose logs -f
+docker compose logs -f
 
 # Stop all services
-docker-compose down
+docker compose down
 
 # Stop and remove volumes
-docker-compose down -v
+docker compose down -v
 ```
 
 ---
@@ -1155,11 +1154,11 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 # ✅ Use volumes for development
 docker run -v $(pwd):/app myapp
 
-# ✅ Use docker-compose for multi-container apps
-docker-compose up -d
+# ✅ Use docker composer for multi-container apps
+docker composer up -d
 
 # ✅ Use environment-specific configs
-docker-compose -f docker-compose.yml -f docker-compose.dev.yml up
+docker composer -f docker-compose.yml -f docker-compose.dev.yml up
 
 # ✅ Use health checks
 HEALTHCHECK CMD curl -f http://localhost/ || exit 1
@@ -1352,34 +1351,34 @@ docker version
 
 ```bash
 # Start services
-docker-compose up
-docker-compose up -d
-docker-compose up --build
+docker compose up
+docker compose up -d
+docker compose up --build
 
 # Stop services
-docker-compose down
-docker-compose down -v
+docker compose down
+docker compose down -v
 
 # View logs
-docker-compose logs
-docker-compose logs -f service
+docker compose logs
+docker compose logs -f service
 
 # List services
-docker-compose ps
+docker compose ps
 
 # Execute command
-docker-compose exec service bash
+docker compose exec service bash
 
 # Build services
-docker-compose build
-docker-compose build --no-cache
+docker compose build
+docker compose build --no-cache
 
 # Scale services
-docker-compose up -d --scale service=3
+docker compose up -d --scale service=3
 
 # Restart services
-docker-compose restart
-docker-compose restart service
+docker compose restart
+docker compose restart service
 ```
 
 ---

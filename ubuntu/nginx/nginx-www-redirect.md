@@ -1,8 +1,10 @@
-# Nginx Server Configuration for Redirecting www to Non-www
+# Nginx WWW Redirects Configuration Guide
 
-This guide provides an optimized Nginx configuration to redirect traffic from `www.yourdomain.com` to `yourdomain.com`. This ensures a consistent URL structure and avoids duplicate content issues.
+This guide provides Nginx configurations for handling WWW redirects in both directions. Choose the configuration based on your preferred URL structure to ensure consistency and avoid duplicate content issues.
 
-## Standard Configuration
+## Option 1: Redirect WWW to Non-WWW
+
+### Standard Configuration (Separate Blocks)
 ```nginx
 server {
     listen 80;
@@ -21,7 +23,7 @@ server {
 }
 ```
 
-## Optimized Configuration (Single Block)
+### Optimized Configuration (Single Block)
 ```nginx
 server {
     listen 80;
@@ -35,4 +37,78 @@ server {
     # ...
 }
 ```
+
+## Option 2: Redirect Non-WWW to WWW
+
+### Standard Configuration (Separate Blocks)
+```nginx
+server {
+    listen 80;
+    server_name yourdomain.com;
+
+    # Redirect non-www to www
+    return 301 $scheme://www.yourdomain.com$request_uri;
+}
+
+server {
+    listen 80;
+    server_name www.yourdomain.com;
+
+    # Your regular server configuration goes here
+    # ...
+}
+```
+
+### Optimized Configuration (Single Block)
+```nginx
+server {
+    listen 80;
+    server_name www.yourdomain.com yourdomain.com;
+
+    if ($host = yourdomain.com) {
+        return 301 $scheme://www.yourdomain.com$request_uri;
+    }
+
+    # Your regular server configuration goes here
+    # ...
+}
+```
+
+
+
+## Testing Your Configuration
+
+### Test the Redirect
+```sh
+Syntax:- curl -I http://SOURCE_DOMAIN
+Example:- curl -I http://www.yourdomain.com
+```
+
+### Verify Final URL
+```sh
+Syntax:- curl -L http://SOURCE_DOMAIN
+Example:- curl -L http://www.yourdomain.com
+```
+
+### Check with Different Paths
+```sh
+Syntax:- curl -I http://SOURCE_DOMAIN/test-path
+Example:- curl -I http://www.yourdomain.com/about-us
+```
+
+## Apply Configuration
+
+### Reload Nginx
+```sh
+sudo nginx -t
+sudo systemctl reload nginx
+```
+
+## Best Practices
+
+1. **Choose One Direction**: Stick with either www or non-www consistently across your site
+2. **Update Internal Links**: Make sure all internal links use your preferred format
+3. **Update Canonical Tags**: Ensure HTML canonical tags match your redirect preference
+4. **Update Analytics**: Configure Google Analytics and other tools with your preferred domain format
+5. **Test Thoroughly**: Test redirects with various paths and query parameters
 
