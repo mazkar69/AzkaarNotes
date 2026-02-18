@@ -1,0 +1,18 @@
+v8 engine is a compiler which simple compile the javascript code. it is open source javascrip engine. 
+libuv -> C++ open source project give node access to network filesystem os and all these.
+
+
+Why we need node why can't use directly use those 2. 
+
+v8 project is 70% c++ and libuv 100 c++. 
+
+
+we don't want to access c++ code directly. that's where node solve the problem which provide the wrapper function.
+
+Node js itself is written in c++ 17% rest in javascript.
+
+javascript engine: every browser has its own javascript engine. Like chrome has v8 firefox has chakra if i am not wrong. 
+
+History of nodejs. In 2009 nodejs was build by the one person initally he use firefox engine but after two days he switched to v8. Now nodejs is managed by open js from 2019. 
+
+   
