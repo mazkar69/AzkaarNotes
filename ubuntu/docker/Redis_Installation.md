@@ -37,7 +37,7 @@ appendonly yes
 dir /data
 
 maxmemory 512mb
-maxmemory-policy allkeys-lru
+maxmemory-policy noeviction
 
 timeout 0
 tcp-keepalive 300
