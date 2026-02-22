@@ -23,6 +23,7 @@ AzkaarNotes/
 │   └── typescript/      # TypeScript learning notes
 ├── nodejs/              # Node.js middleware & patterns
 ├── utils/               # Reusable JS/Node.js utility snippets
+├── references/          # General reference docs, APIs, notes
 └── .github/             # GitHub & Copilot configuration
 ```
 
@@ -142,15 +143,15 @@ Reusable JavaScript/Node.js snippets using ES modules.
 
 ---
 
-## Other Reference Files
+## References (`references/`)
 
 | File | Description |
 |------|-------------|
-| [npm_package_reference.md](npm_package_reference.md) | npm package reference list |
-| [useful_apis.md](useful_apis.md) | Collection of useful APIs |
-| [useful_links_and_notes.md](useful_links_and_notes.md) | Useful links & dev notes |
-| [mongodb_backup.md](mongodb_backup.md) | MongoDB backup & restore guide |
-| [deployment-setup.md](deployment-setup.md) | General deployment setup notes |
-| [Add_Multiple_GitHub_Account.md](Add_Multiple_GitHub_Account.md) | Multiple GitHub accounts setup |
-| [country_notes.md](country_notes.md) | Country-related notes |
-| [countriesData.json](countriesData.json) | Countries JSON data |
+| [npm_package_reference.md](references/npm_package_reference.md) | npm package reference list |
+| [useful_apis.md](references/useful_apis.md) | Collection of useful APIs |
+| [useful_links_and_notes.md](references/useful_links_and_notes.md) | Useful links & dev notes |
+| [mongodb_backup.md](references/mongodb_backup.md) | MongoDB backup & restore guide |
+| [deployment-setup.md](references/deployment-setup.md) | General deployment setup notes |
+| [Add_Multiple_GitHub_Account.md](references/Add_Multiple_GitHub_Account.md) | Multiple GitHub accounts setup |
+| [country_notes.md](references/country_notes.md) | Country-related notes |
+| [countriesData.json](references/countriesData.json) | Countries JSON data |

@@ -17,7 +17,7 @@ This is a **developer knowledge base** - a collection of markdown documentation,
 | `docs/` | Development topics (Redux, SSH, Vite, FFmpeg, TypeScript) |
 | `nodejs/` | Node.js middleware patterns |
 | `utils/` | Reusable JavaScript/Node.js utility snippets |
-| Root `.md` files | Cross-cutting topics (APIs, npm packages, MongoDB backup) |
+| `references/` | Cross-cutting topics (APIs, npm packages, MongoDB backup, misc notes) |
 
 ## Documentation Conventions
 
@@ -55,7 +55,7 @@ Example:- command actual-value
 - **Docker**: Service-specific installation guides
 
 ### Reference Documentation Style
-Tables for package/link references (see [npm_package_reference.md](npm_package_reference.md)):
+Tables for package/link references (see [npm_package_reference.md](references/npm_package_reference.md)):
 ```markdown
 | Package | Description |
 |---------|-------------|
@@ -66,7 +66,7 @@ Tables for package/link references (see [npm_package_reference.md](npm_package_r
 
 1. **New deployment guide**: Follow existing naming convention and add to the appropriate `deployment/` subdirectory (`apache/`, `nginx/`, or `docker/`)
 2. **New utility function**: Add to `utils/` with ES module exports
-3. **New reference doc**: Use table format for lists, include external links with descriptions
+3. **New reference doc**: Add to `references/` with table format for lists, include external links with descriptions
 4. **Topic documentation**: Include Table of Contents for long docs (see [redux_toolkit.md](docs/redux_toolkit.md))
 
 ## Key Technologies Referenced
