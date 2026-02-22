@@ -13,7 +13,6 @@ AzkaarNotes/
 │   ├── nginx/           # Nginx web server deployments
 │   └── docker/          # Docker containerized services
 ├── ubuntu/              # Linux server administration & setup
-│   └── notes/           # General Ubuntu/Linux notes
 ├── cloud/
 │   └── aws/             # AWS guides (EBS, EC2, S3, IAM, RDS, CloudFront)
 ├── docs/                # Development topic documentation
@@ -36,58 +35,86 @@ AzkaarNotes/
 ### Apache (`deployment/apache/`)
 | Guide | Description |
 |-------|-------------|
-| [Deploy_NodeExpress_Apache_Github.md](deployment/apache/Deploy_NodeExpress_Apache_Github.md) | Node/Express with Apache & GitHub |
-| [Deploy_NodeExpress_Apache.md](deployment/apache/Deploy_NodeExpress_Apache.md) | Node/Express with Apache |
-| [Deploy_React_Vue_Next_Nuxt_Apache_Github.md](deployment/apache/Deploy_React_Vue_Next_Nuxt_Apache_Github.md) | React/Vue/Next/Nuxt with Apache & GitHub |
-| [Deploy_NextJS_Apache_Github.md](deployment/apache/Deploy_NextJS_Apache_Github.md) | Next.js with Apache & GitHub |
-| [Deploy_NuxtJS_Apache_Github.md](deployment/apache/Deploy_NuxtJS_Apache_Github.md) | Nuxt.js with Apache & GitHub |
-| [Deploy_Laravel_Apache_Github.md](deployment/apache/Deploy_Laravel_Apache_Github.md) | Laravel with Apache & GitHub |
-| [Deploy_Laravel_Apache.md](deployment/apache/Deploy_Laravel_Apache.md) | Laravel with Apache |
-| [Deploy_Django_Apache_Github.md](deployment/apache/Deploy_Django_Apache_Github.md) | Django with Apache & GitHub |
-| [Deploy_Django_Apache.md](deployment/apache/Deploy_Django_Apache.md) | Django with Apache |
-| [Deploy_HTML_Static_Apache_Github.md](deployment/apache/Deploy_HTML_Static_Apache_Github.md) | Static HTML with Apache & GitHub |
+| [Apache_Deploy_NodeExpress_Github.md](deployment/apache/Apache_Deploy_NodeExpress_Github.md) | Node/Express with Apache & GitHub |
+| [Apache_Deploy_NodeExpress.md](deployment/apache/Apache_Deploy_NodeExpress.md) | Node/Express with Apache |
+| [Apache_Deploy_React_Vue_Next_Nuxt_Github.md](deployment/apache/Apache_Deploy_React_Vue_Next_Nuxt_Github.md) | React/Vue/Next/Nuxt with Apache & GitHub |
+| [Apache_Deploy_NextJS_Github.md](deployment/apache/Apache_Deploy_NextJS_Github.md) | Next.js with Apache & GitHub |
+| [Apache_Deploy_NuxtJS_Github.md](deployment/apache/Apache_Deploy_NuxtJS_Github.md) | Nuxt.js with Apache & GitHub |
+| [Apache_Deploy_Laravel_Github.md](deployment/apache/Apache_Deploy_Laravel_Github.md) | Laravel with Apache & GitHub |
+| [Apache_Deploy_Laravel.md](deployment/apache/Apache_Deploy_Laravel.md) | Laravel with Apache |
+| [Apache_Deploy_Django_Github.md](deployment/apache/Apache_Deploy_Django_Github.md) | Django with Apache & GitHub |
+| [Apache_Deploy_Django.md](deployment/apache/Apache_Deploy_Django.md) | Django with Apache |
+| [Apache_Deploy_HTML_Static_Github.md](deployment/apache/Apache_Deploy_HTML_Static_Github.md) | Static HTML with Apache & GitHub |
 
 ### Nginx (`deployment/nginx/`)
 | Guide | Description |
 |-------|-------------|
-| [Deploy_NodeExpress_Nginx.md](deployment/nginx/Deploy_NodeExpress_Nginx.md) | Node/Express with Nginx |
-| [Deploy_NextJS_Nginx.md](deployment/nginx/Deploy_NextJS_Nginx.md) | Next.js with Nginx |
-| [Deploy_NuxtJS_Nginx.md](deployment/nginx/Deploy_NuxtJS_Nginx.md) | Nuxt.js with Nginx |
-| [Deploy_React_Vue_Nginx.md](deployment/nginx/Deploy_React_Vue_Nginx.md) | React/Vue with Nginx |
-| [Deploy_Laravel_Nginx.md](deployment/nginx/Deploy_Laravel_Nginx.md) | Laravel with Nginx |
-| [Deploy_Django_Nginx.md](deployment/nginx/Deploy_Django_Nginx.md) | Django with Nginx |
-| [Deploy_HTML_Static_Nginx_Github.md](deployment/nginx/Deploy_HTML_Static_Nginx_Github.md) | Static HTML with Nginx & GitHub |
-| [Deploy_PHP_Project_Nginx.md](deployment/nginx/Deploy_PHP_Project_Nginx.md) | PHP project with Nginx |
-| [Configure_PHP_Nginx.md](deployment/nginx/Configure_PHP_Nginx.md) | Configure PHP with Nginx |
-| [Create_nginx_sites-available.md](deployment/nginx/Create_nginx_sites-available.md) | Create Nginx sites-available config |
-| [SSL_Cert_Nginx.md](deployment/nginx/SSL_Cert_Nginx.md) | SSL certificate for Nginx |
-| [LEMP_Stack_Installation.md](deployment/nginx/LEMP_Stack_Installation.md) | LEMP stack installation |
-| [Install_phpmyadmin_Nginx.md](deployment/nginx/Install_phpmyadmin_Nginx.md) | phpMyAdmin on Nginx |
-| [Password_Protected_Website_Nginx.md](deployment/nginx/Password_Protected_Website_Nginx.md) | Password-protect a site on Nginx |
-| [Point_Domain_Host_HTML_Website_Nginx.md](deployment/nginx/Point_Domain_Host_HTML_Website_Nginx.md) | Point domain to Nginx site |
-| [nginx-setup-window.md](deployment/nginx/nginx-setup-window.md) | Nginx setup on Windows |
-| [nginx-www-redirect.md](deployment/nginx/nginx-www-redirect.md) | Nginx www redirect config |
-| [phpMyAdmin-ubuntu.md](deployment/nginx/phpMyAdmin-ubuntu.md) | phpMyAdmin on Ubuntu |
-| [wordpress-setup.md](deployment/nginx/wordpress-setup.md) | WordPress setup on Nginx |
+| [Nginx_Deploy_NodeExpress.md](deployment/nginx/Nginx_Deploy_NodeExpress.md) | Node/Express with Nginx |
+| [Nginx_Deploy_NextJS.md](deployment/nginx/Nginx_Deploy_NextJS.md) | Next.js with Nginx |
+| [Nginx_Deploy_NuxtJS.md](deployment/nginx/Nginx_Deploy_NuxtJS.md) | Nuxt.js with Nginx |
+| [Nginx_Deploy_React_Vue.md](deployment/nginx/Nginx_Deploy_React_Vue.md) | React/Vue with Nginx |
+| [Nginx_Deploy_Laravel.md](deployment/nginx/Nginx_Deploy_Laravel.md) | Laravel with Nginx |
+| [Nginx_Deploy_Django.md](deployment/nginx/Nginx_Deploy_Django.md) | Django with Nginx |
+| [Nginx_Deploy_HTML_Static_Github.md](deployment/nginx/Nginx_Deploy_HTML_Static_Github.md) | Static HTML with Nginx & GitHub |
+| [Nginx_Deploy_PHP_Project.md](deployment/nginx/Nginx_Deploy_PHP_Project.md) | PHP project with Nginx |
+| [Nginx_Configure_PHP.md](deployment/nginx/Nginx_Configure_PHP.md) | Configure PHP with Nginx |
+| [Nginx_Create_Sites_Available.md](deployment/nginx/Nginx_Create_Sites_Available.md) | Create Nginx sites-available config |
+| [Nginx_SSL_Cert.md](deployment/nginx/Nginx_SSL_Cert.md) | SSL certificate for Nginx |
+| [Nginx_LEMP_Stack_Installation.md](deployment/nginx/Nginx_LEMP_Stack_Installation.md) | LEMP stack installation |
+| [Nginx_Install_PhpMyAdmin.md](deployment/nginx/Nginx_Install_PhpMyAdmin.md) | phpMyAdmin on Nginx |
+| [Nginx_Password_Protected_Website.md](deployment/nginx/Nginx_Password_Protected_Website.md) | Password-protect a site on Nginx |
+| [Nginx_Point_Domain_Host_HTML_Website.md](deployment/nginx/Nginx_Point_Domain_Host_HTML_Website.md) | Point domain to Nginx site |
+| [Nginx_Setup_Window.md](deployment/nginx/Nginx_Setup_Window.md) | Nginx setup on Windows |
+| [Nginx_WWW_Redirect.md](deployment/nginx/Nginx_WWW_Redirect.md) | Nginx www redirect config |
+| [Nginx_PhpMyAdmin_Ubuntu.md](deployment/nginx/Nginx_PhpMyAdmin_Ubuntu.md) | phpMyAdmin on Ubuntu |
+| [Nginx_WordPress_Setup.md](deployment/nginx/Nginx_WordPress_Setup.md) | WordPress setup on Nginx |
 | [Nginx_Rate_Limiting.md](deployment/nginx/Nginx_Rate_Limiting.md) | Nginx rate limiting & throttling |
 
 ### Docker (`deployment/docker/`)
 | Guide | Description |
 |-------|-------------|
 | [Docker_Install.md](deployment/docker/Docker_Install.md) | Install Docker |
-| [docker.basic1.md](deployment/docker/docker.basic1.md) | Docker basics - Part 1 |
-| [docker.basic2.md](deployment/docker/docker.basic2.md) | Docker basics - Part 2 |
+| [Docker_Basic_1.md](deployment/docker/Docker_Basic_1.md) | Docker basics - Part 1 |
+| [Docker_Basic_2.md](deployment/docker/Docker_Basic_2.md) | Docker basics - Part 2 |
 | [Docker_Compose.md](deployment/docker/Docker_Compose.md) | Docker Compose multi-container setup |
-| [Mongodb_Installation.md](deployment/docker/Mongodb_Installation.md) | MongoDB via Docker |
-| [Redis_Installation.md](deployment/docker/Redis_Installation.md) | Redis via Docker |
-| [Nginx_Install.md](deployment/docker/Nginx_Install.md) | Nginx via Docker |
-| [nginx.conf](deployment/docker/nginx.conf) | Sample Nginx config for Docker |
+| [Docker_MongoDB_Installation.md](deployment/docker/Docker_MongoDB_Installation.md) | MongoDB via Docker |
+| [Docker_Redis_Installation.md](deployment/docker/Docker_Redis_Installation.md) | Redis via Docker |
+| [Docker_Nginx_Installation.md](deployment/docker/Docker_Nginx_Installation.md) | Nginx via Docker |
+| [Docker_Nginx.conf](deployment/docker/Docker_Nginx.conf) | Sample Nginx config for Docker |
 
 ---
 
 ## Server Administration (`ubuntu/`)
 
-Linux server setup, security, databases, and package installation for Ubuntu. See [ubuntu/README.md](ubuntu/README.md) for full index.
+Linux server setup, security, databases, and package installation for Ubuntu.
+
+| File | Description |
+|------|-------------|
+| [Ubuntu_Fresh_Instance_Commands.md](ubuntu/Ubuntu_Fresh_Instance_Commands.md) | Fresh server initial setup commands |
+| [Ubuntu_Create_Sudo_User.md](ubuntu/Ubuntu_Create_Sudo_User.md) | Create sudo user |
+| [Ubuntu_Set_Timezone.md](ubuntu/Ubuntu_Set_Timezone.md) | Set server timezone |
+| [Ubuntu_UFW_Firewall_Setup.md](ubuntu/Ubuntu_UFW_Firewall_Setup.md) | UFW firewall setup |
+| [Ubuntu_Fail2ban_Security.md](ubuntu/Ubuntu_Fail2ban_Security.md) | Fail2ban security setup |
+| [Ubuntu_SSL_Cert_Apache2.md](ubuntu/Ubuntu_SSL_Cert_Apache2.md) | SSL certificate for Apache2 |
+| [Ubuntu_LAMP_Stack_Installation.md](ubuntu/Ubuntu_LAMP_Stack_Installation.md) | LAMP stack installation |
+| [Ubuntu_LEMP_Stack_Installation.md](ubuntu/Ubuntu_LEMP_Stack_Installation.md) | LEMP stack installation |
+| [Ubuntu_Install_Node_NPM.md](ubuntu/Ubuntu_Install_Node_NPM.md) | Install Node.js & NPM |
+| [Ubuntu_Install_Composer.md](ubuntu/Ubuntu_Install_Composer.md) | Install Composer |
+| [Ubuntu_Install_Config_MongoDB.md](ubuntu/Ubuntu_Install_Config_MongoDB.md) | Install & configure MongoDB |
+| [Ubuntu_Install_PhpMyAdmin_Apache.md](ubuntu/Ubuntu_Install_PhpMyAdmin_Apache.md) | phpMyAdmin on Apache |
+| [Ubuntu_PM2_Process_Manager.md](ubuntu/Ubuntu_PM2_Process_Manager.md) | PM2 process manager |
+| [Ubuntu_Secure_MySQL.md](ubuntu/Ubuntu_Secure_MySQL.md) | Secure MySQL installation |
+| [Ubuntu_Assign_MySQL_DB_To_User.md](ubuntu/Ubuntu_Assign_MySQL_DB_To_User.md) | Assign MySQL DB to user |
+| [Ubuntu_Create_MongoDB_User.md](ubuntu/Ubuntu_Create_MongoDB_User.md) | Create MongoDB user |
+| [Ubuntu_Import_Export_SQL_File.md](ubuntu/Ubuntu_Import_Export_SQL_File.md) | Import/export SQL files |
+| [Ubuntu_Point_Domain_Host_HTML_Website.md](ubuntu/Ubuntu_Point_Domain_Host_HTML_Website.md) | Point domain to HTML website |
+| [Ubuntu_Disable_Dir_Browsing_Apache.md](ubuntu/Ubuntu_Disable_Dir_Browsing_Apache.md) | Disable directory browsing on Apache |
+| [Ubuntu_Password_Protected_Website_Apache.md](ubuntu/Ubuntu_Password_Protected_Website_Apache.md) | Password-protect website on Apache |
+| [Ubuntu_Remove_Apache2.md](ubuntu/Ubuntu_Remove_Apache2.md) | Remove Apache2 |
+| [Ubuntu_Linux_User_SSH_Notes.md](ubuntu/Ubuntu_Linux_User_SSH_Notes.md) | Linux user & SSH notes |
+| [Ubuntu_Samba_Configuration_Windows.md](ubuntu/Ubuntu_Samba_Configuration_Windows.md) | Samba configuration for Windows |
+| [Ubuntu_Part_1.md](ubuntu/Ubuntu_Part_1.md) | Ubuntu general notes - Part 1 |
+| [Ubuntu_Part_2.md](ubuntu/Ubuntu_Part_2.md) | Ubuntu general notes - Part 2 |
 
 ---
 
@@ -95,8 +122,8 @@ Linux server setup, security, databases, and package installation for Ubuntu. Se
 
 | Guide | Description |
 |-------|-------------|
-| [EBS_Attach.md](cloud/aws/EBS_Attach.md) | Attach EBS volume to EC2 |
-| [EBS_Resize.md](cloud/aws/EBS_Resize.md) | Resize EBS volume |
+| [AWS_EBS_Attach.md](cloud/aws/AWS_EBS_Attach.md) | Attach EBS volume to EC2 |
+| [AWS_EBS_Resize.md](cloud/aws/AWS_EBS_Resize.md) | Resize EBS volume |
 | [AWS_EC2_Setup.md](cloud/aws/AWS_EC2_Setup.md) | EC2 instance launch & configuration |
 | [AWS_S3_File_Upload.md](cloud/aws/AWS_S3_File_Upload.md) | S3 file upload with Node.js |
 | [AWS_IAM_Roles.md](cloud/aws/AWS_IAM_Roles.md) | IAM users, roles & policies |
@@ -109,11 +136,11 @@ Linux server setup, security, databases, and package installation for Ubuntu. Se
 
 | Topic | File |
 |-------|------|
-| Vite | [basics_of_vite.md](docs/basics_of_vite.md) |
-| Content Types | [content-type.md](docs/content-type.md) |
-| Copilot Custom Chat | [copilotCustomChat.md](docs/copilotCustomChat.md) |
-| Framer Motion | [framer-motion.md](docs/framer-motion.md) |
-| Redux Toolkit | [redux_toolkit.md](docs/redux_toolkit.md) |
+| Vite | [Basics_Of_Vite.md](docs/Basics_Of_Vite.md) |
+| Content Types | [Content_Type.md](docs/Content_Type.md) |
+| Copilot Custom Chat | [Copilot_Custom_Chat.md](docs/Copilot_Custom_Chat.md) |
+| Framer Motion | [Framer_Motion.md](docs/Framer_Motion.md) |
+| Redux Toolkit | [Redux_Toolkit.md](docs/Redux_Toolkit.md) |
 | FFmpeg | [ffmpeg/](docs/ffmpeg/) |
 | Node.js | [nodejs/](docs/nodejs/) |
 | SSH/SCP/SFTP | [ssh/](docs/ssh/) |
@@ -192,7 +219,7 @@ Git commands, workflows, and account setup.
 | [useful_apis.md](references/useful_apis.md) | Collection of useful APIs |
 | [useful_links_and_notes.md](references/useful_links_and_notes.md) | Useful links & dev notes |
 | [deployment-setup.md](references/deployment-setup.md) | General deployment setup notes |
-| [country_notes.md](references/country_notes.md) | Country-related notes |
 | [countriesData.json](references/countriesData.json) | Countries JSON data |
+| [country_notes.md](references/country_notes.md) | Country-related notes |
 | [Linux_Commands_Cheatsheet.md](references/Linux_Commands_Cheatsheet.md) | Essential Linux commands reference |
 | [Regex_Cheatsheet.md](references/Regex_Cheatsheet.md) | Regular expressions quick reference |
