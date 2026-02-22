@@ -8,18 +8,21 @@ This is a **developer knowledge base** - a collection of markdown documentation,
 
 | Directory | Purpose |
 |-----------|---------|
-| `ubuntu/` | Linux server administration, web server deployment (Apache/Nginx), database setup |
-| `ubuntu/docker/` | Docker basics, containerized service installation (MongoDB, Redis, Nginx) |
-| `ubuntu/nginx/` | Nginx-specific deployment guides for various frameworks |
-| `docs/` | Development topics (Redux, SSH, Vite, FFmpeg) |
-| `aws/` | AWS-specific guides (EBS volumes) |
-| `utils functions/` | Reusable JavaScript/Node.js utility snippets |
+| `deployment/apache/` | Apache deployment guides for all frameworks |
+| `deployment/nginx/` | Nginx deployment guides and configuration |
+| `deployment/docker/` | Docker basics, containerized service installation (MongoDB, Redis, Nginx) |
+| `ubuntu/` | Linux server administration, security, database setup, package installation |
+| `ubuntu/notes/` | General Ubuntu/Linux notes and Samba configuration |
+| `cloud/aws/` | AWS-specific guides (EBS volumes) |
+| `docs/` | Development topics (Redux, SSH, Vite, FFmpeg, TypeScript) |
+| `nodejs/` | Node.js middleware patterns |
+| `utils/` | Reusable JavaScript/Node.js utility snippets |
 | Root `.md` files | Cross-cutting topics (APIs, npm packages, MongoDB backup) |
 
 ## Documentation Conventions
 
 ### Markdown Structure Pattern
-All deployment guides follow this structure (see [Deploy_NodeExpress_Apache_Github.md](ubuntu/Deploy_NodeExpress_Apache_Github.md)):
+All deployment guides follow this structure (see [Deploy_NodeExpress_Apache_Github.md](deployment/apache/Deploy_NodeExpress_Apache_Github.md)):
 1. Title with technology stack
 2. Prerequisites/software versions
 3. DNS/Domain configuration table
@@ -34,8 +37,8 @@ Example:- command actual-value
 ```
 ```
 
-### Code Snippets in `utils functions/`
-- Use ES modules (`import`/`export`) - see [connectDB.js](utils%20functions/connectDB.js)
+### Code Snippets in `utils/`
+- Use ES modules (`import`/`export`) - see [connectDB.js](utils/connectDB.js)
 - Environment variables via `process.env`
 - Export named functions or default for single utilities
 
@@ -52,7 +55,7 @@ Example:- command actual-value
 - **Docker**: Service-specific installation guides
 
 ### Reference Documentation Style
-Tables for package/link references (see [npm_package_refrance.md](npm_package_refrance.md)):
+Tables for package/link references (see [npm_package_reference.md](npm_package_reference.md)):
 ```markdown
 | Package | Description |
 |---------|-------------|
@@ -61,8 +64,8 @@ Tables for package/link references (see [npm_package_refrance.md](npm_package_re
 
 ## When Adding New Content
 
-1. **New deployment guide**: Follow existing naming convention and structure from `ubuntu/` directory
-2. **New utility function**: Add to `utils functions/` with ES module exports
+1. **New deployment guide**: Follow existing naming convention and add to the appropriate `deployment/` subdirectory (`apache/`, `nginx/`, or `docker/`)
+2. **New utility function**: Add to `utils/` with ES module exports
 3. **New reference doc**: Use table format for lists, include external links with descriptions
 4. **Topic documentation**: Include Table of Contents for long docs (see [redux_toolkit.md](docs/redux_toolkit.md))
 
