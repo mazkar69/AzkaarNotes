@@ -45,6 +45,12 @@ scp -i key.pem file.txt user@SERVER_IP:/path/on/server/
 scp -r -i key.pem myfolder/ user@SERVER_IP:/path/on/server/
 ```
 
+### Upload folder example:
+
+```bash
+scp -i "C:\Users\Azkar\Desktop\AWS Connect\CNPL.pem" -r "G:\Ultimate Numerology App\numerology-web\dist" ubuntu@ec2-65-0-19-52.ap-south-1.compute.amazonaws.com:/home/ubuntu/
+```
+
 ### Download file (Server → Local)
 
 ```bash
