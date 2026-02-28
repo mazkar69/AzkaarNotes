@@ -10,6 +10,7 @@ Keep this as your go-to cheat sheet while building modern React/Node.js apps.
 |--------|-------------|
 | `react-apexcharts` | Modern charting library for React. Great for dashboards and visualizations. *(Used in Womb)* |
 | `highcharts-react-official` | Official Highcharts wrapper for React, supports advanced chart types. *(Used in Gamerlink)* |
+| `mermaid` | JavaScript-based diagramming and charting tool. Creates flowcharts, sequence diagrams, Gantt charts, and more using simple markdown syntax. |
 
 ---
 
