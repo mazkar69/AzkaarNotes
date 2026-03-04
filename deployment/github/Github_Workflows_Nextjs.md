@@ -61,8 +61,13 @@ jobs:
             git fetch origin
             git reset --hard origin/main
 
+            # Load NVM and use Node 22
             export NVM_DIR="$HOME/.nvm"
-            source $NVM_DIR/nvm.sh
+            [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+            nvm use 22
+
+            command -v node
+            command -v pm2
 
             npm ci
             npm run build
@@ -158,6 +163,15 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             cd /var/www/my-nextjs-app
+
+            # Load NVM and use Node 22
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+            nvm use 22
+
+            command -v node
+            command -v pm2
+
             pm2 reload my-nextjs-app --update-env || pm2 start server.js --name "my-nextjs-app"
             pm2 save
             echo "✅ Standalone Next.js deployed!"
@@ -229,7 +243,15 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             cd /var/www/my-nextjs-staging
-            export NVM_DIR="$HOME/.nvm" && source $NVM_DIR/nvm.sh
+
+            # Load NVM and use Node 22
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+            nvm use 22
+
+            command -v node
+            command -v pm2
+
             npm ci --omit=dev
             pm2 reload my-nextjs-staging --update-env || pm2 start npm --name "my-nextjs-staging" -- start
             pm2 save
@@ -274,7 +296,15 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             cd /var/www/my-nextjs-app
-            export NVM_DIR="$HOME/.nvm" && source $NVM_DIR/nvm.sh
+
+            # Load NVM and use Node 22
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+            nvm use 22
+
+            command -v node
+            command -v pm2
+
             npm ci --omit=dev
             pm2 reload my-nextjs-app --update-env || pm2 start npm --name "my-nextjs-app" -- start
             pm2 save

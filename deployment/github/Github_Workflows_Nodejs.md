@@ -62,6 +62,14 @@ jobs:
             git fetch origin
             git reset --hard origin/main
 
+            # Load NVM and use Node 22
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+            nvm use 22
+
+            command -v node
+            command -v pm2
+
             npm ci --omit=dev
 
             pm2 reload ecosystem.config.cjs --update-env || pm2 start ecosystem.config.cjs
@@ -120,8 +128,11 @@ jobs:
 
             echo "🔧 Setting up Node.js environment..."
             export NVM_DIR="$HOME/.nvm"
-            source $NVM_DIR/nvm.sh
+            [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
             nvm use 22
+
+            command -v node
+            command -v pm2
 
             echo "📦 Installing dependencies..."
             npm ci --omit=dev
@@ -180,7 +191,11 @@ jobs:
             git reset --hard origin/development
 
             export NVM_DIR="$HOME/.nvm"
-            source $NVM_DIR/nvm.sh
+            [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+            nvm use 22
+
+            command -v node
+            command -v pm2
 
             npm ci --omit=dev
             pm2 reload my-app-staging --update-env || pm2 start ecosystem.config.cjs --env staging
@@ -209,7 +224,11 @@ jobs:
             git reset --hard origin/main
 
             export NVM_DIR="$HOME/.nvm"
-            source $NVM_DIR/nvm.sh
+            [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+            nvm use 22
+
+            command -v node
+            command -v pm2
 
             npm ci --omit=dev
             pm2 reload my-app --update-env || pm2 start ecosystem.config.cjs --env production
@@ -257,7 +276,11 @@ jobs:
             git reset --hard origin/main
 
             export NVM_DIR="$HOME/.nvm"
-            source $NVM_DIR/nvm.sh
+            [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+            nvm use 22
+
+            command -v node
+            command -v pm2
 
             npm ci --omit=dev
             pm2 reload ecosystem.config.cjs --update-env || pm2 start ecosystem.config.cjs
@@ -275,6 +298,7 @@ jobs:
               npm ci --omit=dev
               pm2 reload ecosystem.config.cjs --update-env
               pm2 save
+              command -v pm2
               echo "⏪ Rolled back to $PREVIOUS_COMMIT"
               exit 1
             fi
@@ -321,7 +345,11 @@ jobs:
             git reset --hard origin/main
 
             export NVM_DIR="$HOME/.nvm"
-            source $NVM_DIR/nvm.sh
+            [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+            nvm use 22
+
+            command -v node
+            command -v pm2
 
             npm ci --omit=dev
             pm2 reload ecosystem.config.cjs --update-env || pm2 start ecosystem.config.cjs

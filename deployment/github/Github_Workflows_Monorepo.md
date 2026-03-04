@@ -125,7 +125,11 @@ jobs:
             git reset --hard origin/main
 
             export NVM_DIR="$HOME/.nvm"
-            source $NVM_DIR/nvm.sh
+            [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+            nvm use 22
+
+            command -v node
+            command -v pm2
 
             cd server
             npm ci --omit=dev
@@ -201,7 +205,11 @@ jobs:
             git reset --hard origin/main
 
             export NVM_DIR="$HOME/.nvm"
-            source $NVM_DIR/nvm.sh
+            [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+            nvm use 22
+
+            command -v node
+            command -v pm2
 
             cd server
             npm ci --omit=dev
@@ -309,7 +317,11 @@ jobs:
             git reset --hard origin/main
 
             export NVM_DIR="$HOME/.nvm"
-            source $NVM_DIR/nvm.sh
+            [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+            nvm use 22
+
+            command -v node
+            command -v pm2
 
             cd server
             npm ci --omit=dev
