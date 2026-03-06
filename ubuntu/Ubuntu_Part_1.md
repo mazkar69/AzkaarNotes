@@ -653,6 +653,9 @@ cat /etc/passwd
 Syntax:- sudo adduser <username> <groupname>
 Example:- sudo adduser john developers
 
+# Alternative way to add user to sudo group
+Example:- usermod -aG sudo raj       
+
 # Remove user from a group
 Syntax:- sudo deluser <username> <groupname>
 Example:- sudo deluser john developers

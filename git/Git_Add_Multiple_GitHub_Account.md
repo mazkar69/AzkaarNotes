@@ -98,7 +98,7 @@ fatal: Could not read from remote repository.
 
 Run:
 ```sh
-ssh -T git@github.com
+ssh -T git@github.com-personal
 ```
 
 If it returns:
