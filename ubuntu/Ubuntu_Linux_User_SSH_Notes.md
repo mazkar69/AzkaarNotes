@@ -18,6 +18,7 @@
 - [10. Recommended Secure Setup](#10-recommended-secure-setup)
 - [11. Mental Model](#11-mental-model)
 - [12. Useful Commands](#12-useful-commands)
+- [13. Important Configuration Files](#13-important-configuration-files)
 
 <br>
 
@@ -338,6 +339,101 @@ cat /home/azkar/.ssh/authorized_keys
 # Edit sudoers file
 sudo visudo
 ```
+
+<br>
+
+## 13. Important Configuration Files
+
+Two critical configuration files control SSH access and sudo permissions on your server.
+
+### `/etc/ssh/sshd_config` — SSH Login Control
+
+This file controls who can SSH into your server and how authentication works.
+
+**Common security settings:**
+```ini
+PermitRootLogin no
+PasswordAuthentication no
+PubkeyAuthentication yes
+Port 22
+AllowUsers ubuntu azkar
+```
+
+**What these settings do:**
+
+| Setting | Purpose |
+|---------|--------|
+| `PermitRootLogin no` | Disable root login via SSH (security best practice) |
+| `PasswordAuthentication no` | Disable password-based SSH login (use keys only) |
+| `PubkeyAuthentication yes` | Enable SSH key-based authentication |
+| `Port 22` | SSH listens on port 22 (can change for security) |
+| `AllowUsers ubuntu azkar` | Only these users can SSH into the server |
+
+**How to edit:**
+```bash
+sudo nano /etc/ssh/sshd_config
+```
+
+**⚠️ Important:** After editing, you must restart SSH for changes to take effect:
+```bash
+sudo systemctl restart ssh
+```
+
+<br>
+
+### `/etc/sudoers` — Sudo Permissions
+
+This file controls which users can use `sudo` (run commands as root) and whether they need to enter a password.
+
+**⚠️ NEVER edit directly** — Always use:
+```bash
+sudo visudo
+```
+
+> **Why visudo?** It validates syntax before saving. A typo in `/etc/sudoers` can lock you out of sudo access entirely.
+
+**Common configurations:**
+```bash
+ubuntu ALL=(ALL) NOPASSWD:ALL
+%sudo ALL=(ALL:ALL) ALL
+azkar ALL=(ALL) NOPASSWD:ALL
+```
+
+**What these lines mean:**
+
+| Line | Explanation |
+|------|-------------|
+| `ubuntu ALL=(ALL) NOPASSWD:ALL` | User `ubuntu` can run any command with sudo, no password required |
+| `%sudo ALL=(ALL:ALL) ALL` | Any user in the `sudo` group can run any command with sudo, password required |
+| `azkar ALL=(ALL) NOPASSWD:ALL` | User `azkar` can run any command with sudo, no password required |
+
+**Syntax breakdown:**
+```
+USER    HOST=(RUN_AS) NOPASSWD: COMMANDS
+```
+
+- `USER` — username or `%group`
+- `ALL` — applies to all hosts
+- `(ALL)` — can run commands as any user
+- `NOPASSWD:` — skip password prompt (omit to require password)
+- `ALL` — can run all commands
+
+**Example: Grant sudo with password:**
+```bash
+john ALL=(ALL:ALL) ALL
+```
+
+**Example: Grant limited sudo without password:**
+```bash
+deployer ALL=(ALL) NOPASSWD: /usr/bin/systemctl, /usr/sbin/service
+```
+
+### Quick Reference
+
+| File | Purpose | Edit Command | Restart Required? |
+|------|---------|--------------|-------------------|
+| `/etc/ssh/sshd_config` | SSH login control | `sudo nano` | ✅ Yes (`sudo systemctl restart ssh`) |
+| `/etc/sudoers` | Sudo permissions | `sudo visudo` | ❌ No |
 
 <br>
 
