@@ -100,6 +100,12 @@ git branch
 # List all branches (local + remote)
 git branch -a
 
+# List all remote branches 
+git branch -r
+
+# Fetch remote branches (Call network to update remote tracking branches)
+git fetch
+
 # Create a new branch
 git branch <branch-name>
 
@@ -122,8 +128,24 @@ git branch -D <branch-name>
 # Delete a remote branch
 git push origin --delete <branch-name>
 
+# Rename a branch
+git branch -m <old-name> <new-name>
+
+# Update remote tracking branch after renaming
+git push origin -u <new-name>
+
 # Rename current branch
 git branch -m <new-name>
+
+# Show remote URLs and tracking branches
+git remote -vv
+
+# Make local branch track a remote branch. (First time pushing)
+git push -u origin <local-branch>
+
+# Create a new local branch that tracks a remote branch (Name should match remote branch)
+git branch --track <local-branch> origin/<remote-branch>
+
 ```
 
 ---
