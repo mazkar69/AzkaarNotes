@@ -2,6 +2,34 @@
 // MongoDB Pagination Helper
 // ============================================
 
+export const simplePagination = asyncHandler(async (req, res) => {
+    const { page = 1, limit = 20, search, status } = req.query;
+
+    // Build filter
+    const filter = {};
+
+    if (search) {
+        filter.$or = [
+            { name: { $regex: search, $options: 'i' } },
+            { slug: { $regex: search, $options: 'i' } },
+        ];
+    }
+
+    if (status) {
+        filter.isActive = status === 'active';
+    }
+
+    // Use pagination helper
+    const result = await paginateMongo(Category, filter, {
+        page,
+        limit,
+        sort: { createdAt: -1 },
+    });
+
+    res.status(200).json(result);
+});
+
+
 /**
  * Paginate MongoDB query results
  * @param {Model} model - Mongoose model
@@ -94,5 +122,7 @@ export const paginateAggregate = async (model, pipeline = [], options = {}) => {
         },
     };
 };
+
+
 
 
