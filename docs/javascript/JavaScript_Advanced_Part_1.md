@@ -18,7 +18,9 @@
 - [Scope Chain & Lexical Environment](#scope-chain--lexical-environment)
 - [let, const & Temporal Dead Zone](#let-const--temporal-dead-zone)
 - [Block Scope & Shadowing](#block-scope--shadowing)
+- [First Class Functions](#first-class-functions)
 - [Closures](#closures)
+- [setTimeout & Event Loop](#settimeout--event-loop)
 
 ---
 
@@ -440,6 +442,43 @@ var a = 10;
 
 ---
 
+## First Class Functions
+
+In JavaScript, functions are **first-class citizens**. This means functions are treated just like **variables** — they can be:
+
+- Assigned to variables
+- Passed as arguments to other functions
+- Returned from other functions
+- Stored in data structures (arrays, objects)
+
+```js
+// Assign function to a variable
+const greet = function(name) {
+  return `Hello, ${name}!`;
+};
+
+// Pass function as an argument
+function executeFunction(fn, value) {
+  return fn(value);
+}
+
+console.log(executeFunction(greet, "Azkar"));  // Hello, Azkar!
+
+// Return function from another function
+function multiplier(factor) {
+  return function(number) {
+    return number * factor;
+  };
+}
+
+const double = multiplier(2);
+console.log(double(5));  // 10
+```
+
+> First-class functions enable powerful patterns like **higher-order functions**, **callbacks**, and **closures**.
+
+---
+
 ## Closures
 
 A **closure** is a function bundled together with its **lexical environment**. The inner function remembers the variables of its outer function even after the outer function has returned.
@@ -525,6 +564,65 @@ for (var i = 1; i <= 3; i++) {
 
 ---
 
+## setTimeout & Event Loop
+
+`setTimeout` is **not part of JavaScript** — it's a **Web API** provided by the browser. When you call `setTimeout`, JavaScript doesn't wait for the timer to finish. Instead:
+
+1. **setTimeout is triggered** → JavaScript sends it to the **browser** along with the callback function
+2. **Browser waits** for the specified time
+3. After time expires → browser sends the callback to the **Task Queue** (also called Callback Queue)
+4. **Event Loop** checks if the **Call Stack is empty**
+5. If empty → Event Loop pushes the callback from Task Queue to Call Stack for execution
+
+### Why setTimeout is Not Trusted
+
+`setTimeout` does **not guarantee** that the callback will execute exactly after the specified time. If the **main thread (Call Stack) is busy**, the Event Loop **cannot** push the callback — even if the timer has expired.
+
+**Example:**
+
+```js
+console.log("Start");
+
+setTimeout(function() {
+  console.log("Timeout callback");
+}, 1000);  // Should run after 1 second
+
+// Block the main thread for 5 seconds
+const startTime = Date.now();
+while (Date.now() - startTime < 5000) {
+  // Busy loop — main thread is blocked
+}
+
+console.log("End");
+```
+
+**Output:**
+
+```
+Start
+(5 seconds delay)
+End
+Timeout callback  ← Runs AFTER 5+ seconds, not 1 second!
+```
+
+**What happened:**
+
+```
+1. "Start" is logged
+2. setTimeout sends callback to browser (timer = 1 second)
+3. Main thread enters while loop (blocks for 5 seconds)
+4. After 1 second: Browser puts callback in Task Queue
+5. Event Loop CANNOT push callback — Call Stack is busy with while loop
+6. After 5 seconds: while loop finishes, "End" is logged
+7. Call Stack is now empty
+8. Event Loop pushes callback from Task Queue to Call Stack
+9. "Timeout callback" is finally logged
+```
+
+> **Key Point:** `setTimeout(fn, 0)` does **not** mean "execute immediately" — it means "execute as soon as the Call Stack is empty".
+
+---
+
 ## Quick Reference
 
 | Concept | Key Takeaway |
@@ -536,7 +634,9 @@ for (var i = 1; i <= 3; i++) {
 | Scope Chain | Local → Parent → ... → GEC. First match wins |
 | Temporal Dead Zone | Time between hoisting and initialization for `let`/`const` |
 | Block Scope | `let`/`const` stay inside `{}`, `var` leaks out |
+| First Class Functions | Functions are treated as variables — can be passed, returned, assigned |
 | Closures | Function + its lexical environment. Remembers outer variables |
+| setTimeout | Web API, not JS. Callback goes to Task Queue → Event Loop → Call Stack |
 
 ---
 
