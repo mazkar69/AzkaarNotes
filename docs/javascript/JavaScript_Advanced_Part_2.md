@@ -15,6 +15,7 @@
 - [Event Loop, Callback Queue & Microtask Queue](#event-loop-callback-queue--microtask-queue)
 - [`this` Keyword](#this-keyword)
 - [Memory Management — Stack & Heap](#memory-management--stack--heap)
+- [Node.js Execution Model](#nodejs-execution-model)
 
 ---
 
@@ -420,6 +421,205 @@ const deep2 = structuredClone(original);                  // modern & recommende
 | `Object.assign()` | Shallow | N/A (first level only) |
 | `JSON.parse(JSON.stringify())` | Deep | ❌ Loses functions, Dates, undefined |
 | `structuredClone()` | Deep | ✅ Handles most types (not functions) |
+
+---
+
+## Node.js Execution Model
+
+The **core JS engine behavior is identical** to the browser — same V8 engine, same Call Stack, same GEC, same JIT compilation. What differs is everything **around** the engine.
+
+### What's the Same
+
+| Concept | Browser | Node.js |
+|--------|---------|----------|
+| JS Engine | V8 (Chrome) | V8 (same engine) |
+| Parsing → AST → Bytecode → JIT | ✅ | ✅ |
+| Global Execution Context (GEC) | ✅ | ✅ |
+| Function Execution Contexts | ✅ | ✅ |
+| Call Stack | ✅ | ✅ |
+| Heap Memory | ✅ | ✅ |
+| Microtask Queue (Promises) | ✅ | ✅ |
+| Event Loop concept | ✅ | ✅ |
+
+---
+
+### Runtime Architecture — Browser vs Node.js
+
+In the **browser**, the runtime is provided by the browser engine (Chrome, Firefox, etc.).
+In **Node.js**, the runtime is provided by **libuv** — a C++ library built specifically for Node.
+
+```
+BROWSER RUNTIME                         NODE.JS RUNTIME
+────────────────────────────────────    ────────────────────────────────────
+┌────────────────────────────────┐      ┌──────────────────────────────────┐
+│         Browser                │      │         Node.js Process          │
+│                                │      │                                  │
+│  ┌────────────┐                │      │  ┌────────────┐                  │
+│  │  V8 Engine │                │      │  │  V8 Engine │                  │
+│  │ Call Stack │                │      │  │ Call Stack │                  │
+│  │    Heap    │                │      │  │    Heap    │                  │
+│  └────────────┘                │      │  └────────────┘                  │
+│                                │      │                                  │
+│  ┌─────────────────────────┐  │      │  ┌───────────────────────────┐  │
+│  │       Web APIs          │  │      │  │  C++ Bindings + libuv     │  │
+│  │ setTimeout, DOM, fetch  │  │      │  │  fs, http, crypto, os,   │  │
+│  │ localStorage, location  │  │      │  │  child_process, net,      │  │
+│  └─────────────────────────┘  │      │  │  timers, etc.             │  │
+│                                │      │  └───────────────────────────┘  │
+│  Event Loop (browser-managed) │      │  Event Loop (libuv-managed)      │
+└────────────────────────────────┘      └──────────────────────────────────┘
+```
+
+---
+
+### Node.js Event Loop — 6-Phase Architecture
+
+The browser event loop is simple: drain microtasks → pick one macrotask → repeat.
+
+Node.js (via **libuv**) has a **multi-phase event loop** with 6 distinct phases:
+
+```
+   ┌──────────────────────────────────────────────────────┐
+   │              NODE.JS EVENT LOOP (libuv)              │
+   │                                                      │
+   │   ┌─────────────────────────────────────────────┐   │
+   │   │  1. TIMERS PHASE                            │   │
+   │   │  Executes: setTimeout(), setInterval() cbs  │   │
+   │   └──────────────────┬──────────────────────────┘   │
+   │                      │                              │
+   │   ┌──────────────────▼──────────────────────────┐   │
+   │   │  2. PENDING CALLBACKS                       │   │
+   │   │  I/O errors deferred from previous cycle    │   │
+   │   └──────────────────┬──────────────────────────┘   │
+   │                      │                              │
+   │   ┌──────────────────▼──────────────────────────┐   │
+   │   │  3. IDLE, PREPARE (internal use only)       │   │
+   │   └──────────────────┬──────────────────────────┘   │
+   │                      │                              │
+   │   ┌──────────────────▼──────────────────────────┐   │
+   │   │  4. POLL PHASE  ← most time spent here      │   │
+   │   │  Retrieves new I/O events (file, network)   │   │
+   │   │  Executes I/O callbacks                     │   │
+   │   │  Waits here if nothing else to do           │   │
+   │   └──────────────────┬──────────────────────────┘   │
+   │                      │                              │
+   │   ┌──────────────────▼──────────────────────────┐   │
+   │   │  5. CHECK PHASE                             │   │
+   │   │  Executes: setImmediate() callbacks         │   │
+   │   └──────────────────┬──────────────────────────┘   │
+   │                      │                              │
+   │   ┌──────────────────▼──────────────────────────┐   │
+   │   │  6. CLOSE CALLBACKS                         │   │
+   │   │  socket.on('close', ...) etc.               │   │
+   │   └──────────────────┬──────────────────────────┘   │
+   │                      │                              │
+   │        ◄─────────────┘  (next tick, repeat)         │
+   └──────────────────────────────────────────────────────┘
+
+   ⚡ Between EVERY phase transition:
+      → Drain ALL process.nextTick() callbacks first
+      → Then drain ALL Promise microtasks
+```
+
+> **`process.nextTick()`** is Node-specific — it runs **before** Promises, even before the next event loop phase. It is the highest priority async callback in Node.
+
+---
+
+### Priority Order in Node.js
+
+```
+1. Current synchronous code (Call Stack)
+2. process.nextTick() callbacks       ← Node only — highest async priority
+3. Promise microtasks (.then, .catch)
+4. setImmediate() callbacks           ← Node only — Check phase
+5. setTimeout() / setInterval()       ← Timers phase
+6. I/O callbacks (file, network)      ← Poll phase
+```
+
+### Example
+
+```js
+setTimeout(() => console.log("setTimeout"), 0);
+setImmediate(() => console.log("setImmediate"));
+Promise.resolve().then(() => console.log("Promise"));
+process.nextTick(() => console.log("nextTick"));
+console.log("Sync");
+```
+
+**Output:**
+
+```
+Sync
+nextTick        ← process.nextTick (runs before everything async)
+Promise         ← Microtask Queue
+setTimeout      ← Timers phase
+setImmediate    ← Check phase
+```
+
+> `setTimeout(fn, 0)` vs `setImmediate()` order can vary depending on context — but inside an **I/O callback**, `setImmediate` always runs before `setTimeout`.
+
+---
+
+### Thread Pool — How Node Handles File I/O Without Blocking
+
+Node.js is single-threaded for JS, but **libuv** offloads expensive operations (file system, DNS, crypto) to a pool of worker threads so the main JS thread never blocks.
+
+```
+Node.js Main Thread (JS + Event Loop)
+        │
+        │  fs.readFile("big.txt", cb)
+        │
+        ▼
+   ┌─────────────────────────────────┐
+   │       libuv Thread Pool         │
+   │  (4 worker threads by default)  │
+   │                                 │
+   │  Thread 1: reading big.txt  ──┐ │
+   │  Thread 2: available          │ │
+   │  Thread 3: available          │ │
+   │  Thread 4: available          │ │
+   └───────────────────────────────┼─┘
+                                   │
+                       File read complete
+                                   │
+                                   ▼
+                    Callback → Poll Phase Queue
+                                   │
+                                   ▼
+                    Event Loop picks it up → Call Stack
+```
+
+> Thread pool size can be configured via the `UV_THREADPOOL_SIZE` environment variable (default: 4, max: 1024).
+
+---
+
+### Key Node.js-Only Concepts
+
+| Concept | What It Is |
+|--------|------------|
+| `process.nextTick()` | Runs callback after current operation, before any I/O or timers — higher priority than Promises |
+| `setImmediate()` | Runs in the **Check phase** — after Poll (I/O) phase, before next Timers phase |
+| **libuv Thread Pool** | Offloads file system, DNS, crypto to worker threads — keeps JS thread non-blocking |
+| **`global`** | Node's global object — equivalent of `window` in browser |
+| No `window` / `document` | Node has no DOM, no BOM, no browser APIs |
+| **Module system** | Node wraps each file in a module wrapper — `require`/`module.exports` (CJS) or `import`/`export` (ESM) |
+
+---
+
+### Browser vs Node.js — Full Comparison
+
+| | Browser | Node.js |
+|--|---------|----------|
+| JS Engine | V8 | V8 (same) |
+| Async APIs | Web APIs (browser-provided) | C++ Bindings + libuv |
+| Event Loop | Simple (microtask → macrotask) | 6-phase loop (libuv) |
+| Extra priority queue | None | `process.nextTick()` |
+| `setImmediate` | Not available | Available (Check phase) |
+| Global object | `window` | `global` |
+| Thread model | Single JS thread | Single JS thread + libuv thread pool |
+| DOM / BOM access | Yes | No |
+| File system | No (limited via File API) | Yes (`fs` module) |
+| Module system | ES Modules (native) | CommonJS + ES Modules |
 
 ---
 
