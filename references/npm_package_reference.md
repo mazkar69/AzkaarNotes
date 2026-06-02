@@ -20,6 +20,7 @@ Keep this as your go-to cheat sheet while building modern React/Node.js apps.
 |--------|-------------|
 | `react-hot-reload` | Enables instant React component updates in development without page refresh. |
 | `cron` | Run scheduled tasks/jobs using CRON expressions in Node.js apps. |
+| `morgan` | HTTP request logger middleware for Node.js/Express. Logs method, URL, status, and response time. |
 | `clsx` | Utility for conditionally joining classNames. Clean alternative to `classnames`. |
 | `tailwind-merge` | Prevents Tailwind CSS class conflicts by intelligently merging them. |
 
@@ -101,6 +102,39 @@ Keep this as your go-to cheat sheet while building modern React/Node.js apps.
 |--------|-------------|
 | `slick-carousel` | Fully responsive carousel with swipe support and custom controls. |
 | `embla-carousel-react` | Modern, lightweight carousel/slider with excellent performance. |
+
+---
+
+## 📝 morgan — HTTP Request Logger
+
+**Install:**
+```bash
+npm install morgan
+```
+
+**Basic Usage in Express:**
+```js
+const express = require('express');
+const morgan = require('morgan');
+
+const app = express();
+
+app.use(morgan('dev')); // logs: GET /route 200 5ms
+
+app.get('/', (req, res) => res.send('Hello World'));
+app.listen(3000);
+```
+
+**Common Format Options:**
+
+| Format | Description |
+|--------|-------------|
+| `dev` | Colorized output for development. Shows method, URL, status, time. |
+| `tiny` | Minimal output — just the basics. |
+| `combined` | Apache-style full log (good for production). |
+| `common` | Standard Apache common log format. |
+
+> 💡 Use `'dev'` in development and `'combined'` in production.
 
 ---
 
