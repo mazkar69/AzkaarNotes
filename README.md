@@ -150,6 +150,7 @@ Linux server setup, security, databases, and package installation for Ubuntu.
 | Environment Variables | [Environment_Variables.md](docs/Environment_Variables.md) |
 | React Performance | [React_Performance_Tips.md](docs/React_Performance_Tips.md) |
 | WebSockets / Socket.IO | [WebSockets_SocketIO.md](docs/WebSockets_SocketIO.md) |
+| Zod Validation | [Zod_Validation.md](docs/Zod_Validation.md) |
 
 ---
 
