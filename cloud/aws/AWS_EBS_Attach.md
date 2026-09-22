@@ -4,6 +4,10 @@
 A clean, production-ready guide for attaching, mounting, detaching, and remounting EBS volumes on Amazon EC2.  
 Perfect for DevOps workflows and GitHub documentation.
 
+> ⚠️ **Note on device names:** This guide uses `/dev/xvdf` as the example device.  
+> The actual device name **can vary from system to system** (e.g., Nitro-based instances show NVMe names like `/dev/nvme1n1`).  
+> Always confirm the correct device with `lsblk` and **update the commands accordingly**.
+
 ---
 
 ## 🔹 1. Create an EBS Volume
@@ -71,7 +75,37 @@ sudo mount /dev/xvdf /data
 
 ---
 
-## 🔹 8. Test File Creation
+## 🔹 8. Verify the Mount (Recommended)
+
+After a successful mount, confirm the volume is actually mounted at `/data`.
+
+### Using `findmnt`
+```bash
+findmnt /data
+```
+
+Example output:
+```
+TARGET SOURCE        FSTYPE OPTIONS
+/data  /dev/nvme1n1  ext4   rw,relatime
+```
+
+### Using `df -h`
+```bash
+df -h /data
+```
+
+Example output (also shows the available size):
+```
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/nvme1n1     98G  1.3G   92G   2% /data
+```
+
+✔ If a line shows `/data` as the **Mounted on** target, the volume is mounted correctly.
+
+---
+
+## 🔹 9. Test File Creation
 ```bash
 ls /data
 echo "hello" > /data/test.txt
@@ -79,7 +113,7 @@ echo "hello" > /data/test.txt
 
 ---
 
-## 🔹 9. Configure Auto-Mount on Reboot (fstab)
+## 🔹 10. Configure Auto-Mount on Reboot (fstab)
 
 ### Get UUID
 ```bash
@@ -108,7 +142,7 @@ sudo mount -a
 
 ---
 
-## 🔹 10. Unmount the Volume (Detach from OS)
+## 🔹 11. Unmount the Volume (Detach from OS)
 ```bash
 sudo umount /data
 ```
@@ -120,13 +154,13 @@ sudo umount -l /data
 
 ---
 
-## 🔹 11. Detach from AWS Console
+## 🔹 12. Detach from AWS Console
 Go to:  
 **EC2 → Volumes → Select Your Volume → Actions → Detach Volume**
 
 ---
 
-## 🔹 12. Reattach & Remount to Verify Persistence
+## 🔹 13. Reattach & Remount to Verify Persistence
 
 ### Reattach via Console  
 (Same as Step 2)
@@ -152,6 +186,8 @@ If the file still exists →
 |--------|---------|
 | List block devices | `lsblk` |
 | List disk usage | `df -h` |
+| Check mount point | `findmnt /data` |
+| Check mount + size | `df -h /data` |
 | Format new volume | `sudo mkfs -t ext4 /dev/xvdf` |
 | Create mount directory | `sudo mkdir -p /data` |
 | Mount volume | `sudo mount /dev/xvdf /data` |
